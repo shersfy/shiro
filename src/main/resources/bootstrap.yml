@@ -1,0 +1,47 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: shiro-demo
+  main:
+    banner-mode: 'off'
+# thymeleaf
+  thymeleaf:
+    enabled: true
+    enable-spring-el-compiler: false
+    cache: false
+    mode: HTML
+    prefix: classpath:/templates/
+    suffix: .html
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+    check-template: true
+    check-template-location: true
+    reactive:
+      max-chunk-size: 0
+# logging
+logging:
+  path: /edpglobal/logs/${spring.application.name}
+  level:
+    root: info
+  edpglobal:
+    filter:
+      level: error
+# management
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+# eureka
+eureka:
+  client:
+    enabled: false
+    serviceUrl:
+      defaultZone: http://datahub.eureka.node1.com:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    lease-renewal-interval-in-seconds: 1
+    lease-expiration-duration-in-seconds: 3

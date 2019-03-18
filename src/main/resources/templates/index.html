@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>shiro-登录</title>
+
+<meta charset="UTF-8" />
+<link href="/favicon.ico" rel="icon" type="image/x-icon" />
+<link href="css/main.css" rel="stylesheet" />
+
+<link rel="stylesheet" type="text/css" href="libs/jquery-easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="libs/jquery-easyui/themes/icon.css">
+
+<script type="text/javascript" charset="utf8" src="libs/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="libs/jquery-easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="libs/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="libs/stomp/stomp.min.js"></script>
+<script type="text/javascript" src="libs/stomp/sockjs.min.js"></script>
+<script type="text/javascript" src="libs/spin.min.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script th:inline="javascript">
+	var basePath = [[${basePath}]];
+</script>
+<script type="text/javascript">
+	var opts = {            
+			lines: 13, // 花瓣数目
+			length: 20, // 花瓣长度
+			width: 5, // 花瓣宽度
+			radius: 20, // 花瓣距中心半径
+			corners: 1, // 花瓣圆滑度 (0-1)
+			rotate: 0, // 花瓣旋转角度
+			direction: 1, // 花瓣旋转方向 1: 顺时针, -1: 逆时针
+			color: '#5882FA', // 花瓣颜色
+			speed: 1, // 花瓣旋转速度
+			trail: 60, // 花瓣旋转时的拖影(百分比)
+			shadow: false, // 花瓣是否显示阴影
+			hwaccel: false, //spinner 是否启用硬件加速及高速旋转            
+			className: 'spinner', // spinner css 样式名称
+			zIndex: 2e9, // spinner的z轴 (默认是2000000000)
+			top: 50, // spinner 相对父容器Top定位 单位 px
+			left: 'auto'// spinner 相对父容器Left定位 单位 px
+	};
+	var spinner = new Spinner(opts);
+</script>
+</head>
+<body>
+	<div id="content" class="easyui-layout" style="width:40%;height:200px;left:30%;top:50px;">
+		<div id="p" class="easyui-panel" data-options="region:'center',title:'&nbsp'" style="padding:10px 60px 20px 60px">
+			<form id="loginform" method="post">
+				<table cellpadding="5" style="width: 100%">
+		    		<tr>
+		    			<td><input id="username" name="username" class="easyui-textbox" type="text" prompt="输入用户名" data-options="required:false" style="width: 100%"></input></td>
+		    		</tr>
+		    		<tr>
+		    			<td><input id="password" name="password" class="easyui-passwordbox"prompt="输入密码" data-options="required:false" style="width: 100%"></input></td>
+		    		</tr>
+		    		<tr>
+		    			<td><a id="login" href="javascript:void(0)" onclick="Index.login()" class="easyui-linkbutton" style="width:100%">登&nbsp;&nbsp;录</a></td>
+		    		</tr>
+		    	</table>
+	    	</form>
+		</div>
+	</div>
+</body>
+</html>
