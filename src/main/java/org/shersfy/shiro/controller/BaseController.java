@@ -21,7 +21,10 @@ public class BaseController {
 	public void setRequestAndResponse(HttpServletRequest request, HttpServletResponse response) {
 		THREAD_LOCAL_REQUEST.set(request);
 		THREAD_LOCAL_RESPONSE.set(response);
-		setBasePath(request, response);
+	}
+	
+	public Object getLoginUser() {
+		return getRequest().getSession().getAttribute("loginUser");
 	}
 
 	public HttpServletRequest getRequest() {
@@ -41,24 +44,6 @@ public class BaseController {
 		String remoteAddr = getRequest().getRemoteHost();
 		remoteAddr = "0:0:0:0:0:0:0:1".equals(remoteAddr)?"localhost":remoteAddr;
 		return remoteAddr;
-	}
-	
-	protected void setBasePath(HttpServletRequest request, HttpServletResponse res) {
-		
-		res.setCharacterEncoding("UTF-8");
-		res.setHeader("Access-Control-Allow-Credentials", "true");
-		res.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
-		res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");
-		res.setHeader("Access-Control-Allow-Headers", "*");
-		
-		StringBuilder basePath = new StringBuilder(0);
-		basePath.append(request.getScheme()).append("://");
-		basePath.append(request.getServerName());
-		if(request.getServerPort() != 80 && request.getServerPort() != 443){
-			basePath.append(":").append(request.getServerPort());
-		}
-		basePath.append(request.getContextPath());
-		request.setAttribute("basePath", basePath.toString());
 	}
 	
 }

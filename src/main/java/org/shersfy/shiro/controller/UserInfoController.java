@@ -15,6 +15,7 @@ public class UserInfoController extends BaseController{
 			@RequestParam(required=true)String password) {
 		Result res = new Result();
 		LOGGER.info("login by username:{}, password:{}", username, password);
+		getRequest().getSession().setAttribute("loginUser", username);
 		res.setModel(username);
 		return res;
 	}

@@ -9,14 +9,20 @@ public class PageController extends BaseController{
 	
 	@RequestMapping("/")
 	public ModelAndView index1() {
-		setBasePath(getRequest(), getResponse());
 		return new ModelAndView("index");
 	}
 	
 	@RequestMapping("/index")
 	public ModelAndView index2() {
-		setBasePath(getRequest(), getResponse());
 		return new ModelAndView("index");
+	}
+	
+	@RequestMapping("/login")
+	public ModelAndView login() {
+		if (getLoginUser()!=null) {
+			return new ModelAndView("redirect:/");
+		}
+		return new ModelAndView("login");
 	}
 	
 }
