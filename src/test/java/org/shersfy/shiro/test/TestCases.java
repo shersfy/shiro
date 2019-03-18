@@ -16,7 +16,6 @@ public class TestCases {
 	@Test
 	public void test01() {
 		//1、获取SecurityManager工厂，此处使用Ini配置文件初始化SecurityManager  
-		Ini.fromResourcePath("classpath:config/shiro.ini");
 		Factory<org.apache.shiro.mgt.SecurityManager> factory =  
 		            new IniSecurityManagerFactory(Ini.fromResourcePath("classpath:config/shiro.ini"));  
 		
